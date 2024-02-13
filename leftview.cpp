@@ -47,7 +47,7 @@ vector<int>leftview(node*root){
     while(q.size()>0){
         int s=q.size();
         ans.push_back(q.front()->val);
-        while(s>0){
+        while(s-->0){
             node* temp=q.front();
             q.pop();
             if(temp->left!=NULL){
