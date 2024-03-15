@@ -36,25 +36,26 @@ void display(node*root){
     display(root->left);
     display(root->right);
 }
-  
-       node*prev=NULL;
-    void flatten(node* root) {
 
-        if (root == NULL) return;
 
-      flatten(root -> right);
-      flatten(root -> left);
+bool isSameTree(node* p, node* q) {
+    if (!p || !q)
+      return p == q;
+    return p->val == q->val &&  isSameTree(p->left, q->left) &&  isSameTree(p->right, q->right);
+  }
 
-      root -> right = prev;
-      root -> left = NULL;
-      prev = root;
+
+ bool isSubtree(node* root,node* subRoot) {
+        if (root == nullptr)
+      return false;
+    if (isSameTree(root, subRoot))
+      return true;
+    return isSubtree(root->left, subRoot) || isSubtree(root->right, subRoot);
         
     }
-    
 int main(){
       vector<int>arr={50,40,30,-1,-1,45,-1,-1,60,62,-1,-1,75,-1,-1};
       node*root=construct_tree(arr);
-      flatten(root);
-      display(root);
+    
 
 }
